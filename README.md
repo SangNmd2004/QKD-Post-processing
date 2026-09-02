@@ -26,26 +26,97 @@ To synthesize and implement this design on a Gowin FPGA, follow these steps:
 2. Navigate to the cloned repository and add the following specific files (Do NOT add files from `tb/` or `python_model/` to the synthesis project):
 
    **a) Top-Level Integration (`rtl/top/`)**
-   - `system_top.v` (The main top-level module to synthesize)
+   - `system_top.v` *(Set this as Top Module)*
    - `qkd_post_processing_top.v`
    - `ldpc_axi_wrapper.v`
    - `bch_cleaner_wrapper.v`
-   - `axis_to_parallel.v`, `parallel_to_axis.v`
+   - `axis_to_parallel.v`
+   - `parallel_to_axis.v`
 
    **b) Controllers (`rtl/`)**
    - `statistical_controller.v`
    - `syndrome_weight_counter.v`
 
-   **c) LDPC Decoder Core (`rtl/ldpc_core/`)**
+   **c) LDPC Decoder Core (`rtl/ldpc_core/` and `rtl/ldpc_core/cnu/`)**
    - `core_partially_parallel.v`
    - `ldpc_bram.v`
    - `rom_h_matrix.v`
    - `barrel_shifter.v`
    - `puncturing_mux.v`
-   - All `.v` files inside `rtl/ldpc_core/cnu/` (e.g., `cnu.v`, `cnu_cluster.v`, `abs.v`, `cmp_tree.v`, etc.)
+   - `cnu/abs.v`
+   - `cnu/cmp.v`
+   - `cnu/cmp_tree.v`
+   - `cnu/cnu.v`
+   - `cnu/cnu_cluster.v`
+   - `cnu/sat.v`
+   - `cnu/sgn_ram.v`
 
    **d) Reed-Solomon Outer Code (`rtl/rs_core/`)**
-   - Add **ALL `.vhd`** (VHDL) files in this directory. The RS core is entirely VHDL-based and relies heavily on generic functions. Ensure files like `rs_decoder.vhd`, `generic_functions.vhd`, `rs_constants.vhd` are included.
+   <details>
+   <summary>Click to expand all 60 required VHDL files</summary>
+   
+   - `adder.vhd`
+   - `async_dff.vhd`
+   - `async_dff_array.vhd`
+   - `async_dff_gen_rst.vhd`
+   - `comparator.vhd`
+   - `config_dff_array.vhd`
+   - `d_sync_flop.vhd`
+   - `decrementer.vhd`
+   - `demultiplexer_array.vhd`
+   - `dual_clock_generic_buffer.vhd`
+   - `flop_cascade.vhd`
+   - `generic_buffer.vhd`
+   - `generic_buffer_impl.vhd`
+   - `generic_components.vhd`
+   - `generic_functions.vhd`
+   - `generic_types.vhd`
+   - `half_adder_unit.vhd`
+   - `half_subtractor_unit.vhd`
+   - `incrementer.vhd`
+   - `mem_fifo.vhd`
+   - `multiplexer_array.vhd`
+   - `no_rst_dff.vhd`
+   - `parallel_to_serial.vhd`
+   - `reg_fifo.vhd`
+   - `reg_fifo_array.vhd`
+   - `rs_adder.vhd`
+   - `rs_berlekamp_massey.vhd`
+   - `rs_chien.vhd`
+   - `rs_chien_forney.vhd`
+   - `rs_codec.vhd`
+   - `rs_components.vhd`
+   - `rs_constants.vhd`
+   - `rs_decoder.vhd`
+   - `rs_encoder.vhd`
+   - `rs_encoder_wrapper.vhd`
+   - `rs_forney.vhd`
+   - `rs_full_multiplier.vhd`
+   - `rs_full_multiplier_core.vhd`
+   - `rs_functions.vhd`
+   - `rs_inverse.vhd`
+   - `rs_multiplier.vhd`
+   - `rs_multiplier_lut.vhd`
+   - `rs_reduce_adder.vhd`
+   - `rs_remainder_unit.vhd`
+   - `rs_syndrome.vhd`
+   - `rs_syndrome_subunit.vhd`
+   - `rs_types.vhd`
+   - `serial_to_parallel.vhd`
+   - `shifter_left.vhd`
+   - `shifter_left_1.vhd`
+   - `single_port_2D_ram.vhd`
+   - `single_port_2D_ram_1.vhd`
+   - `single_port_linear_ram.vhd`
+   - `single_port_ram.vhd`
+   - `sync_dff_array.vhd`
+   - `sync_dff_gen_rst.vhd`
+   - `sync_ld_dff.vhd`
+   - `two_input_size_generic_buffer.vhd`
+   - `up_counter.vhd`
+   - `up_down_counter.vhd`
+   
+   </details>
 
 3. **Set the Top Module:** Right-click on `system_top.v` in the Design tree and select **Set as Top Module**. This ensures Gowin synthesizes the entire pipeline correctly without trying to compile sub-modules independently.
 
