@@ -1,0 +1,43 @@
+# Vivado Project Files
+*.xpr
+*.jou
+*.log
+*.str
+*.zip
+*.dcp
+*.bit
+*.hdf
+*.mmi
+*.bin
+*.pdi
+
+# Vivado Directories
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+
+# Python Virtual Environments & Pycache
+__pycache__/
+*.pyc
+.env
+venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# Log and data outputs
+/data/
+*.csv
+
+# Temporary RS codec folders
+rs_codec_tmp/
+rs_freecore_tmp/
+archive_legacy/
+xgui/
+python_sim/
+qkd_post_processing_legacy/
