@@ -67,7 +67,6 @@ To synthesize and implement this design on a Gowin FPGA, follow these steps:
    - `dual_clock_generic_buffer.vhd`
    - `flop_cascade.vhd`
    - `generic_buffer.vhd`
-   - `generic_buffer_impl.vhd`
    - `generic_components.vhd`
    - `generic_functions.vhd`
    - `generic_types.vhd`
@@ -104,9 +103,7 @@ To synthesize and implement this design on a Gowin FPGA, follow these steps:
    - `rs_types.vhd`
    - `serial_to_parallel.vhd`
    - `shifter_left.vhd`
-   - `shifter_left_1.vhd`
    - `single_port_2D_ram.vhd`
-   - `single_port_2D_ram_1.vhd`
    - `single_port_linear_ram.vhd`
    - `single_port_ram.vhd`
    - `sync_dff_array.vhd`
