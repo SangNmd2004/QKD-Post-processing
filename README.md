@@ -23,11 +23,30 @@ To synthesize and implement this design on a Gowin FPGA, follow these steps:
 
 ### 2. Add the Source Files
 1. In the **Design** tab (usually on the left panel), right-click on the project name and select **Add Files**.
-2. Navigate to the cloned repository and add all `.v` and `.vhd` files from the following directories:
-   - `rtl/`
-   - `rtl/ldpc_core/`
-   - `rtl/rs_core/`
-   - `rtl/top/`
+2. Navigate to the cloned repository and add the following specific files (Do NOT add files from `tb/` or `python_model/` to the synthesis project):
+
+   **a) Top-Level Integration (`rtl/top/`)**
+   - `system_top.v` (The main top-level module to synthesize)
+   - `qkd_post_processing_top.v`
+   - `ldpc_axi_wrapper.v`
+   - `bch_cleaner_wrapper.v`
+   - `axis_to_parallel.v`, `parallel_to_axis.v`
+
+   **b) Controllers (`rtl/`)**
+   - `statistical_controller.v`
+   - `syndrome_weight_counter.v`
+
+   **c) LDPC Decoder Core (`rtl/ldpc_core/`)**
+   - `core_partially_parallel.v`
+   - `ldpc_bram.v`
+   - `rom_h_matrix.v`
+   - `barrel_shifter.v`
+   - `puncturing_mux.v`
+   - All `.v` files inside `rtl/ldpc_core/cnu/` (e.g., `cnu.v`, `cnu_cluster.v`, `abs.v`, `cmp_tree.v`, etc.)
+
+   **d) Reed-Solomon Outer Code (`rtl/rs_core/`)**
+   - Add **ALL `.vhd`** (VHDL) files in this directory. The RS core is entirely VHDL-based and relies heavily on generic functions. Ensure files like `rs_decoder.vhd`, `generic_functions.vhd`, `rs_constants.vhd` are included.
+
 3. **Set the Top Module:** Right-click on `system_top.v` in the Design tree and select **Set as Top Module**. This ensures Gowin synthesizes the entire pipeline correctly without trying to compile sub-modules independently.
 
 ### 3. Configure Synthesis Strategy (Crucial for BRAM Limits)
