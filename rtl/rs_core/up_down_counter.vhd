@@ -11,7 +11,7 @@ use work.generic_components.sync_ld_dff;
 
 entity up_down_counter is
     generic(
-          WORD_LENGTH : natural);
+          WORD_LENGTH : natural := 8);
     port ( clk : in  std_logic;
 			  rst : in std_logic;
            i_dir : in  std_logic; 			-- '0' for up, '1' for down

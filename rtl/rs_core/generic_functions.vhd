@@ -8,11 +8,11 @@ use work.GENERIC_TYPES.integer_array;
 use work.GENERIC_TYPES.std_logic_vector_array;
 
 package GENERIC_FUNCTIONS is
-    function max(A, B: natural) return natural;
-    function ceil_division(A, B: natural) return natural;
+    function max(A: natural := 0; B: natural := 0) return natural;
+    function ceil_division(A: natural := 0; B: natural := 1) return natural;
     function get_even_indexes(slva: std_logic_vector_array; WORD_LENGTH: natural) return std_logic_vector_array;
     function get_odd_indexes(slva: std_logic_vector_array; WORD_LENGTH: natural) return std_logic_vector_array;
-    function get_log_round(N: natural) return natural;
+    function get_log_round(N: natural := 1) return natural;
     function init_flop_value(iteration, WORD_LENGTH, CONDITION: natural) return std_logic_vector;
     function int_array_to_std_vector_array(int_array: integer_array; NUM_OF_ELEMENTS: integer; LENGTH: integer) return std_logic_vector_array;
 	 function int2slv(int: integer; WORD_LENGTH: natural) return std_logic_vector;
@@ -25,7 +25,7 @@ end package GENERIC_FUNCTIONS;
 
 package body GENERIC_FUNCTIONS is    
 
-	 function max(A, B: natural) return natural is
+	 function max(A: natural := 0; B: natural := 0) return natural is
 	 begin
 		 if (A > B) then
 			 return A;
@@ -34,7 +34,7 @@ package body GENERIC_FUNCTIONS is
 		 end if;
 	 end;
 
-    function ceil_division(A, B: natural) return natural is
+    function ceil_division(A: natural := 0; B: natural := 1) return natural is
 	 begin
 		 return (A + B - 1) / B;
 	 end;
@@ -65,7 +65,7 @@ package body GENERIC_FUNCTIONS is
         return slva_odd;
     end function;
 
-	function get_log_round(N: natural) return natural is
+	function get_log_round(N: natural := 1) return natural is
         variable temp : natural;
         variable count : natural := 0;
 	begin

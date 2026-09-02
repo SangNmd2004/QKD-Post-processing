@@ -4,8 +4,7 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity up_counter is
     generic(
-        WORD_LENGTH : natural
-    );
+        WORD_LENGTH : natural := 8);
     port ( 
         clk : in std_logic; -- clock input
         rst : in std_logic; -- reset input

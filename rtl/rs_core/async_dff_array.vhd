@@ -12,9 +12,8 @@ use work.GENERIC_TYPES.all;
 
 entity async_dff_array is 
     generic (
-        NUM_OF_ELEMENTS : natural range 1 to 1024; 
-        WORD_LENGTH : natural range 1 to 10
-    );
+        NUM_OF_ELEMENTS : natural := 1; 
+        WORD_LENGTH : natural := 8);
     port (
         clk : in std_logic;
         rst : in std_logic;

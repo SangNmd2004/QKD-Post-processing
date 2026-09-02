@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.all;
 
 entity comparator is
 	generic (
-		WORD_LENGTH : natural);
+		WORD_LENGTH : natural := 8);
 	port (
 --		en : in std_logic;
 		i_r : in std_logic_vector ((WORD_LENGTH - 1) downto 0);

@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.all;
 
 entity adder is
 	generic (
-		WORD_LENGTH : natural);
+		WORD_LENGTH : natural := 8);
 	port (
 		i0 : in std_logic_vector ((WORD_LENGTH - 1) downto 0);
 		i1 : in std_logic_vector ((WORD_LENGTH - 1) downto 0);

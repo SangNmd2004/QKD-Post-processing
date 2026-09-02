@@ -3,9 +3,8 @@ use IEEE.STD_LOGIC_1164.all;
  
 entity dual_clock_generic_buffer is
   generic (
-    INPUT_LENGTH : natural;
-    OUTPUT_LENGTH : natural
-  );
+    INPUT_LENGTH : natural := 8;
+    OUTPUT_LENGTH : natural := 8);
   port (
     clk_rd : in std_logic;
     clk_wr : in std_logic;

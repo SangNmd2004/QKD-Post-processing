@@ -5,11 +5,10 @@ use work.GENERIC_FUNCTIONS.max;
 
 entity two_input_size_generic_buffer is
   generic (
-    INPUT_1_LENGTH : natural;
-    INPUT_2_LENGTH : natural;
-    OUTPUT_LENGTH : natural;
-    NUM_OF_OUTPUT_ELEMENTS : natural
-  );
+    INPUT_1_LENGTH : natural := 8;
+    INPUT_2_LENGTH : natural := 8;
+    OUTPUT_LENGTH : natural := 8;
+    NUM_OF_OUTPUT_ELEMENTS : natural := 1);
   port (
     clk : in std_logic;
     rst : in std_logic;

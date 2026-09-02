@@ -9,7 +9,7 @@ use work.GENERIC_FUNCTIONS.get_log_round;
 
 entity multiplexer_array is
     generic (
-        WORD_LENGTH : integer := 4;
+        WORD_LENGTH : integer := 8;
         NUM_OF_ELEMENTS : integer := 4
     );
     port (

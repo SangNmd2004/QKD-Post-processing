@@ -3,8 +3,7 @@ use IEEE.STD_LOGIC_1164.all;
 
 entity async_dff_gen_rst is 
     generic (
-        WORD_LENGTH : natural range 1 to 10
-    );
+        WORD_LENGTH : natural := 8);
     port (
         clk : in std_logic;
         rst : in std_logic;

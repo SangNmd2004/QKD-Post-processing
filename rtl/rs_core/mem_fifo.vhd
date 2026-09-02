@@ -5,8 +5,8 @@ use ieee.std_logic_1164.all;
 
 entity mem_fifo is
 generic (
-    O_SIZE : integer;					-- output size
-    I_SIZE : integer;					-- input size
+    O_SIZE : integer := 8;					-- output size
+    I_SIZE : integer := 8;					-- input size
     MEM_SIZE: integer					-- memory size
   );
 port (

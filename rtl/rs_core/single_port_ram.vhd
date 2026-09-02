@@ -6,9 +6,8 @@ use work.GENERIC_FUNCTIONS.get_log_round;
 
 entity single_port_ram is
     generic (
-        NUMBER_OF_ELEMENTS : natural;
-        WORD_LENGTH : natural
-    );
+        NUMBER_OF_ELEMENTS : natural := 1;
+        WORD_LENGTH : natural := 8);
     port (
         clk : in std_logic;
         i_ram_wr_en : in std_logic;
