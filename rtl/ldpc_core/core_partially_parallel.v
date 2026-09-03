@@ -275,7 +275,7 @@ module core_partially_parallel #(
                     
                     llr_we <= 1'b0; c2v_we <= 1'b0;
                     if (col_count == 0) begin
-                        for(i=0; i<D_cnu; i=i+1) q_in_buffer[i] <= {Zc{DUMMY_Q_IN}};
+                        for(i=0; i<D_cnu; i=i+1) q_in_buffer[i] <= DUMMY_Q_IN;
                         valid_degree_count <= 0;
                     end
                     if (col_count < 26) begin
