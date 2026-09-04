@@ -36,7 +36,8 @@ module qkd_post_processing_top #(
     input  wire hash_fail,
     output wire ir_success,
     output wire [5:0] ldpc_iters_out,
-    output wire pa_active
+    output wire pa_active,
+    output wire discard_flag
 );
 
     // ==========================================
@@ -114,6 +115,28 @@ module qkd_post_processing_top #(
             assign ldpc_l_buffer_ext[gi_llr*12 +: 12] = {{ (12-LLR_W){val[LLR_W-1]} }, val};
         end
     endgenerate
+    // ==========================================
+    // Predictive Controller (Hardware Algorithm Co-Design)
+    // ==========================================
+    wire [10:0] shw_val;
+    wire [1:0] opt_rate;
+    wire [7:0] iter_max;
+
+    syndrome_weight_counter u_adder_tree (
+        .clk(clk),
+        .rst_n(~rst),
+        .syn_in(syndrome_buffer[1151:0]), // Tính trọng số dựa trên Error Syndrome
+        .shw_out(shw_val)
+    );
+
+    statistical_controller u_controller (
+        .clk(clk),
+        .rst_n(~rst),
+        .shw_in(shw_val),
+        .opt_rate(opt_rate),
+        .iter_max(iter_max),
+        .discard_flag(discard_flag)
+    );
 
     // Sử dụng kiến trúc tối ưu cho Gowin 138K Pro (Siêu phân giải)
     core_partially_parallel #(
@@ -128,8 +151,8 @@ module qkd_post_processing_top #(
         .clk(clk),
         .rst(rst),
         .start(ldpc_en),
-        .iter_max_in(8'd50),
-        .code_rate(code_rate),
+        .iter_max_in(iter_max), // Sử dụng Predictive Controller
+        .code_rate(opt_rate),   // Dùng hoàn toàn thuật toán dự đoán thay vì AXI
         .llr_in_array(ldpc_l_buffer_ext),
         .syn_in(syndrome_buffer),
         .done(ldpc_done),
